@@ -1,0 +1,21 @@
+{
+  "name": "roham-app",
+  "version": "1.0.0",
+  "description": "roham app generator",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app"
+  },
+  "author": "ali behnik",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cron": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-fileupload": "^1.5.1",
+    "systeminformation": "^5.25.11",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}
