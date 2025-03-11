@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
-const network = require('./network')
-const routes = require('./routes')
-const logger = require('./logger')
+const { get_current_ip } = require('./network')
+const { init_routes } = require('./routes')
+const { log } = require('./logger')
 
 require('dotenv').config()
 
@@ -23,18 +23,15 @@ app.set('trust proxy', 1)
 const BASE_PORT = process.env.BASE_PORT
 
 async function start () {
-  var current_ip = await network.get_current_ip()
+  var current_ip = await get_current_ip()
 
-  await routes.init(app)
+  await init_routes(app)
 
   app.listen(
     BASE_PORT,
     //current_ip,
     async () => {
-      logger.log(
-        `app server started at http://${current_ip}:${BASE_PORT};`,
-        'info'
-      )
+      log(`app server started at http://${current_ip}:${BASE_PORT};`, 'info')
     }
   )
 }

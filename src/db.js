@@ -1,8 +1,8 @@
-const mariadb = require('mariadb')
+const { createPool } = require('mariadb')
 require('dotenv').config()
 
 console.log(process.env.DB_HOST)
-const pool = mariadb.createPool({
+const pool = createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,

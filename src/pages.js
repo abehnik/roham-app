@@ -1,7 +1,7 @@
-const helpers = require('./helpers')
-const ejs = require('ejs')
+const { get_page_by_url } = require('./helpers')
+const { render } = require('ejs')
 
-exports.render = async (req, res) => {
+exports.render_page = async (req, res) => {
   var page_lang = req.params.page_lang
   var page_url = req.params.page_url
   var page_param1 = req.params.page_param1
@@ -10,7 +10,7 @@ exports.render = async (req, res) => {
   var current_user = req.user
 
   try {
-    var page = await helpers.get_page_by_url(page_lang, page_url)
+    var page = await get_page_by_url(page_lang, page_url)
     if (page !== null) {
       if (page.is_protected === true) {
         console.log(current_user)
@@ -31,7 +31,7 @@ exports.render = async (req, res) => {
         )
       } else layout_content = page.page_content
 
-      var html = ejs.render(layout_content, {
+      var html = render(layout_content, {
         page_title: page.title,
         page_url: page.url,
         page_icon: page.icon,
