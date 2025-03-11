@@ -63,10 +63,9 @@ exports.render_page = async (req, res) => {
     } else res.status(404).send('آدرس مورد نظر یافت نشد!')
   } catch (error) {
     console.log(error)
-    return {
-      code: 500,
+    res.status(500).send({
       message: 'خطا در بارگذاری!',
       error: JSON.stringify(error)
-    }
+    })
   }
 }

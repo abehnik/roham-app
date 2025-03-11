@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'B Roya';
+    src: url('assets/fonts/b-roya.woff') format('woff'),url('assets/fonts/b-roya.ttf')  format('truetype');
+}
+@font-face {
+    font-family: tahoma;
+    src: url('assets/fonts/tahoma.html') format('woff'),url('assets/fonts/tahoma-2.html')  format('truetype');
+}
+body{font-family:'B Roya'}

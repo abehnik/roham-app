@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload')
 const { get_current_ip } = require('./network')
 const { init_routes } = require('./routes')
 const { log } = require('./logger')
+const { rateLimit } = require('express-rate-limit')
 
 require('dotenv').config()
 
@@ -11,6 +12,19 @@ var app = express()
 
 // set cors
 app.use(cors())
+
+// rate limiter
+app.use(
+  rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minutes
+    limit: 1000, // Limit each IP to 1000 requests per `window` (here, per 1 minutes).
+    standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+    message: async (req, res) => {
+      return 'You can only make 1000 requests every hour.'
+    }
+  })
+)
 
 app.use(express.static('public'))
 app.use(express.json({ limit: '50mb' }))

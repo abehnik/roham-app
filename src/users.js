@@ -4,13 +4,17 @@ const { get_user_by_user_name } = require('./helpers')
 const crypto_service = require('./crypto')
 require('dotenv').config()
 
-exports.login = async (req, res) => {
+/**
+ * login as local
+ * @param {*} req
+ * @param {*} res
+ */
+exports.login_local = async (req, res) => {
   const { user_name, password } = req.body
   var current_user = undefined
 
   try {
     // Check if email and username exists and blah blah validation steps...
-
     var user = await get_user_by_user_name(user_name)
     if (user) {
       // If every validation passes, store it in the Database
@@ -19,9 +23,8 @@ exports.login = async (req, res) => {
         user.hashed_password,
         user.salt
       )
-      if (match) current_user = user
 
-      if (current_user !== undefined) {
+      if (match) {
         // Create a JWT Token
 
         var token = sign(
@@ -51,10 +54,19 @@ exports.login = async (req, res) => {
             expires_in: 86400
           }
         })
-      }
+      } else res.send({ code: 404, message: 'کاربری با این مشخصات یافت نشد!' })
     } else res.send({ code: 404, message: 'کاربری با این مشخصات یافت نشد!' })
   } catch (error) {
     log(error, 'error')
     res.send({ code: 500, message: 'خطا در ورود به سیستم!' })
   }
 }
+
+/**
+ * login as ldap
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.login_ldap = async (req, res) => {}
+
+exports.logout = (req, res) => {}
