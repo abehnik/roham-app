@@ -5,13 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app",
-    "build-old": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && pkg -t node18-win --compress GZip dist/obfos.js -o build/Roham.1.0.0.exe",
-    "build": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && node build.js"
+    "build": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && pkg -t node18-win --compress GZip dist/obfos.js -o build/Roham.1.0.0.exe"
   },
   "author": "ali behnik",
   "license": "ISC",
   "dependencies": {
-    "@angablue/exe": "^3.2.4",
     "clear": "^0.1.0",
     "cors": "^2.8.5",
     "cron": "^4.1.0",

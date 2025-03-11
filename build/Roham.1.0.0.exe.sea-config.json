@@ -1,5 +1,0 @@
-{
-  "main": "./build/Roham.1.0.0.exe.bundle.js",
-  "output": "./build/Roham.1.0.0.exe.blob",
-  "disableExperimentalSEAWarning": true
-}
