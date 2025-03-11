@@ -5,7 +5,7 @@ const crypto_service = require('./crypto')
 require('dotenv').config()
 
 /**
- * login as local
+ * ورود از طریق محلی
  * @param {*} req
  * @param {*} res
  */
@@ -63,10 +63,12 @@ exports.login_local = async (req, res) => {
 }
 
 /**
- * login as ldap
- * @param {*} req 
- * @param {*} res 
+ * ورود از طریق ldap
+ * @param {*} req
+ * @param {*} res
  */
 exports.login_ldap = async (req, res) => {}
 
-exports.logout = (req, res) => {}
+exports.logout = (req, res) => {
+  res.send('ok')
+}

@@ -91,6 +91,21 @@ exports.get_file_by_id = async file_id => {
 }
 
 /**
+ * فایل جدید
+ * @param {*} file 
+ * @returns 
+ */
+exports.add_file = async(file)=>{
+  return await db.execute(
+    `insert into files(name,type,size,content) values(:name,:type,:size,:content);`, {
+    name: file.file_name,
+    type: file.file_type,
+    size: file.file_size,
+    content: file.file_content
+});
+}
+
+/**
  * بازیابی کاربر با نام کاربری
  * @param {*} user_name
  * @returns

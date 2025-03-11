@@ -1,8 +1,8 @@
 const { render_page } = require('./pages')
 const { render_api } = require('./apis')
-const { show_file } = require('./files')
+const { show_file, upload_file } = require('./files')
 const { current_user } = require('./middlewares')
-const { login_local, login_ldap } = require('./users')
+const { login_local, login_ldap, logout } = require('./users')
 
 exports.init_routes = async app => {
   app.get('/', (req, res) => {
@@ -16,9 +16,11 @@ exports.init_routes = async app => {
   )
 
   app.get('/api/files/:file_id', show_file)
+  app.post('/api/files/upload', current_user, upload_file)
 
-  app.post('/api/user/login-local', login_local)
-  app.post('/api/user/login-ldap', login_ldap)
+  app.post('/api/users/login-local', login_local)
+  app.post('/api/users/login-ldap', login_ldap)
+  app.post('/api/users/logout', logout)
 
   app.post('/api/:api_url', current_user, render_api)
 }

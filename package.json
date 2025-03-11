@@ -4,11 +4,15 @@
   "description": "roham app generator",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app"
+    "start": "node src/app",
+    "build-old": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && pkg -t node18-win --compress GZip dist/obfos.js -o build/Roham.1.0.0.exe",
+    "build": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && node build.js"
   },
   "author": "ali behnik",
   "license": "ISC",
   "dependencies": {
+    "@angablue/exe": "^3.2.4",
+    "clear": "^0.1.0",
     "cors": "^2.8.5",
     "cron": "^4.1.0",
     "dotenv": "^16.4.7",
@@ -18,6 +22,7 @@
     "express-rate-limit": "^7.5.0",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.4.0",
+    "pkg": "^5.8.1",
     "stream": "^0.0.3",
     "systeminformation": "^5.25.11",
     "winston": "^3.17.0",
