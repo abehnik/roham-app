@@ -1,5 +1,7 @@
-const { get_page_by_url } = require('./helpers')
+const { get_config, get_page_by_url } = require('./helpers')
 const { render } = require('ejs')
+const { parse } = require('node-html-parser')
+const { render_widget } = require('./widgets')
 
 exports.render_page = async (req, res) => {
   var page_lang = req.params.page_lang
@@ -20,18 +22,35 @@ exports.render_page = async (req, res) => {
       var page_type = page.type
       var layout_content = ''
 
+      var site_title = await get_config('site_title')
+      console.log(site_title)
       if (page.layout_content !== null) {
         layout_content = page.layout_content.replace(
           '<page-title></page-title>',
           `<title>${page.title}</title>`
         )
+
+        layout_content = layout_content.replace(
+          `<site-title></site-title>`,
+          `
+          <!-- Start Site Title -->
+          <title>${site_title} - ${page.title}</title>
+          <!-- End Site Title -->`
+        )
+
         layout_content = layout_content.replace(
           '<page-body></page-body>',
           page.page_content
         )
       } else layout_content = page.page_content
 
-      var html = render(layout_content, {
+      const root = parse(layout_content, { comment: true })
+
+      var widgets = root.getElementsByTagName('page-widget')
+      
+      await render_widget(widgets, 0, page_param1)
+
+      var html = render(root.toString(), {
         page_title: page.title,
         page_url: page.url,
         page_icon: page.icon,

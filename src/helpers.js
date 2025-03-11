@@ -92,17 +92,19 @@ exports.get_file_by_id = async file_id => {
 
 /**
  * فایل جدید
- * @param {*} file 
- * @returns 
+ * @param {*} file
+ * @returns
  */
-exports.add_file = async(file)=>{
+exports.add_file = async file => {
   return await db.execute(
-    `insert into files(name,type,size,content) values(:name,:type,:size,:content);`, {
-    name: file.file_name,
-    type: file.file_type,
-    size: file.file_size,
-    content: file.file_content
-});
+    `insert into files(name,type,size,content) values(:name,:type,:size,:content);`,
+    {
+      name: file.file_name,
+      type: file.file_type,
+      size: file.file_size,
+      content: file.file_content
+    }
+  )
 }
 
 /**
@@ -123,9 +125,9 @@ exports.get_user_by_user_name = async user_name => {
 
 /**
  * بازیابی دسترسی نقش به منو api
- * @param {*} role_id 
- * @param {*} api_url 
- * @returns 
+ * @param {*} role_id
+ * @param {*} api_url
+ * @returns
  */
 exports.get_role_menu_api_by_url = async (role_id, api_url) => {
   return await db.execute_single(
@@ -142,6 +144,20 @@ exports.get_role_menu_api_by_url = async (role_id, api_url) => {
     {
       role_id,
       api_url
+    }
+  )
+}
+
+exports.get_widget_by_name = async (widget_name) => {
+  return await execute_single(
+    `select w.id,w.name,w.title,w.content,w.widget_type,
+        w.query,
+        a.url as app_url
+    from widgets w
+    left join apps a on a.id = w.app_id
+    where w.name = :widget_name;`,
+    {
+      widget_name: widget_name
     }
   )
 }

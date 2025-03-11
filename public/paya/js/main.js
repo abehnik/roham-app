@@ -378,5 +378,5 @@ $(document).ready(function () {
 
 });
 $(window).on('load', function () {
-    $(this).impulse({ range: 200, tempo: 600 });
+    //$(this).impulse({ range: 200, tempo: 600 });
 });
