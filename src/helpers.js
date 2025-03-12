@@ -148,6 +148,11 @@ exports.get_role_menu_api_by_url = async (role_id, api_url) => {
   )
 }
 
+/**
+ * بازیابی ویجت با نام
+ * @param {*} widget_name 
+ * @returns 
+ */
 exports.get_widget_by_name = async (widget_name) => {
   return await execute_single(
     `select w.id,w.name,w.title,w.content,w.widget_type,

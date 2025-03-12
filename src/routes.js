@@ -3,6 +3,7 @@ const { render_api } = require('./apis')
 const { show_file, upload_file } = require('./files')
 const { current_user } = require('./middlewares')
 const { login_local, login_ldap, logout } = require('./users')
+const expressCache = require('cache-express')
 
 exports.init_routes = async app => {
   app.get('/', (req, res) => {
@@ -15,7 +16,9 @@ exports.init_routes = async app => {
     render_page
   )
 
-  app.get('/api/files/:file_id', show_file)
+  app.get('/api/files/:file_id',expressCache({
+    timeOut: 60*60*1000, // Cache for 1 hour
+  }), show_file)
   app.post('/api/files/upload', current_user, upload_file)
 
   app.post('/api/users/login-local', login_local)

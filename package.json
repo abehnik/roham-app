@@ -10,6 +10,7 @@
   "author": "ali behnik",
   "license": "ISC",
   "dependencies": {
+    "cache-express": "^1.0.2",
     "clear": "^0.1.0",
     "cors": "^2.8.5",
     "cron": "^4.1.0",

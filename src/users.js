@@ -67,8 +67,15 @@ exports.login_local = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-exports.login_ldap = async (req, res) => {}
+exports.login_ldap = async (req, res) => {
+  res.send('ok')
+}
 
+/**
+ * خروج از سیستم
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.logout = (req, res) => {
   res.send('ok')
 }
