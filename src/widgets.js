@@ -37,16 +37,16 @@ exports.render_widget = async (widgets, i, page_param) => {
           else
             widgets[i].replaceWith(
               `<!-- Start widget ${widget.name}  -->
-                        خطا در بارگذاری ویجت!
-                        <!-- End widget ${widget.name} -->`
+                  خطا در بارگذاری ویجت!
+              <!-- End widget ${widget.name} -->`
             )
         }
       } catch (error) {
         console.log(error)
         widgets[i].replaceWith(
           `<!-- Start widget ${widget.name}  -->
-                        خطا در بارگذاری ویجت!
-                    <!-- End widget ${widget.name} -->`
+              خطا در بارگذاری ویجت!
+          <!-- End widget ${widget.name} -->`
         )
       }
     } else {
