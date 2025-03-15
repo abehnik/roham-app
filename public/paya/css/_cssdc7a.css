@@ -1,5 +1,1 @@
-@font-face {
-    font-family: tahoma;
-    src: url('assets/fonts/tahoma.html') format('woff'),url('assets/fonts/tahoma-2.html')  format('truetype');
-}
-body{font-family:tahoma}
+@font-face{font-family:tahoma;src:url(assets/fonts/tahoma.html) format('woff'),url(assets/fonts/tahoma-2.html) format('truetype')}body{font-family:tahoma}
