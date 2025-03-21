@@ -1,4 +1,5 @@
 const { verify } = require('jsonwebtoken')
+const { log } = require('./logger')
 
 /**
  * واسط افزار برای چک کردن کاربر جاری
@@ -7,7 +8,7 @@ const { verify } = require('jsonwebtoken')
  * @param {*} next
  */
 exports.current_user = (req, res, next) => {
-  console.log('check user')
+  log.log('check user', 'info')
   const authCookie =
     req.cookies !== undefined ? req.cookies['authcookie'] : null
 

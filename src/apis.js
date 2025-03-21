@@ -1,4 +1,5 @@
 const { get_api_by_url, get_role_menu_api_by_url } = require('./helpers')
+const {log} = require('./logger')
 
 exports.render_api = async (req, res) => {
   var api_url = req.params.api_url
@@ -62,7 +63,7 @@ exports.render_api = async (req, res) => {
       }
     } else res.send({ code: 404, message: 'آدرس مورد نظر یافت نشد!' })
   } catch (error) {
-    console.log(error)
+    log(error,'error')
     res.send({
       code: 500,
       message: 'خطا در بارگذاری!',
