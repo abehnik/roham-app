@@ -19,7 +19,7 @@ exports.get_apps = async () => {
  */
 exports.get_config = async config_name => {
   var config = await execute_single(
-    `select id,name,value from configs where name = :name`,
+    `select id,name,value from configs where name = :name;`,
     {
       name: config_name
     }
@@ -56,7 +56,7 @@ exports.get_page_by_url = async (page_lang, page_url) => {
  * @returns
  */
 exports.get_role_by_id = async role_id => {
-  return await execute_single(`select * from roles where id = :role_id;`, {
+  return await execute_single(`select id,title,is_admin,is_default,is_normal_user from roles where id = :role_id;`, {
     role_id: role_id
   })
 }
@@ -85,7 +85,7 @@ exports.get_api_by_url = async api_url => {
  * @returns
  */
 exports.get_file_by_id = async file_id => {
-  return await execute_single('select * from files where id = :id', {
+  return await execute_single('select * from files where id = :id;', {
     id: file_id
   })
 }
