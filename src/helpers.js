@@ -38,8 +38,8 @@ exports.get_page_by_url = async (page_lang, page_url) => {
     `select p.id,p.url,p.title,p.type,p.content as page_content,p.is_protected,
                                 l.content as layout_content,
                                 a.url as app_url,a.id as app_id,a.title as app_title
-                    from pages p 
-					inner join apps a on a.id = p.app_id
+     from pages p 
+		 inner join apps a on a.id = p.app_id
                     inner join languages lang on lang.id = p.language_id
                     left join layouts l on l.id = p.layout_id
                     where lang.name = :page_lang and p.url = :page_url`,
