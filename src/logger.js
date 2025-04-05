@@ -24,6 +24,11 @@ var logger = winston.createLogger({
     ]
 });
 
+/**
+ * log method
+ * @param {*} log_text 
+ * @param {*} log_type 
+ */
 exports.log = (log_text, log_type = 'error') => {
     switch (log_type) {
         case 'error':

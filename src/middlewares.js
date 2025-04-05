@@ -8,7 +8,7 @@ const { log } = require('./logger')
  * @param {*} next
  */
 exports.current_user = (req, res, next) => {
-  log.log('check user', 'info')
+  log('check user', 'info')
   const authCookie =
     req.cookies !== undefined ? req.cookies['authcookie'] : null
 
