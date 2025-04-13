@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app",
-    "build": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && pkg -t node18-win --compress GZip dist/obfos.js -o build/Roham.1.0.0.exe"
+    "build:all": "ncc build src/app.js -o dist --minify && javascript-obfuscator dist/index.js --compact true --self-defending false --output dist/obfos.js && pkg -t node18-win --compress GZip dist/obfos.js -o build/Roham.1.0.0.exe"
   },
   "author": "ali behnik",
   "license": "ISC",
